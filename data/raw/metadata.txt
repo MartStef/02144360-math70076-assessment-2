@@ -12,3 +12,65 @@ If you use this dataset, please cite the following paper:
 Jonathan Krause, Michael Stark, Jia Deng, Li Fei-Fei
 
 4th IEEE Workshop on 3D Representation and Recognition, at ICCV 2013 (3dRR-13). Sydney, Australia. Dec. 8, 2013
+
+Contents:
+
+- car_data folder, which contains train and test folders. Each of these folders
+contains folders with the cars' make, model and year of production. 
+Each of these folders contains images of the particular make and model.
+
+- names.csv contains all the 196 names of the cars in this data set
+
+- anno_train.csv and anno_test.csv - image file, bounding boxes and class number
+
+Instructions on how to download the data:
+
+ - Install python and run in the terminal or a command line:
+ 
+     pip install kaggle
+
+ - Set up API credentials by doing the following steps:
+
+     - Go to Kaggle and create a free account
+     
+     - Click the profile picture on the top right and go to Settings
+     
+     - Navigate down to the API menu
+     
+     - Click on "Create New Token"
+     
+     - It will download a file: kaggle.json.
+     
+     - Move this file to:
+
+      - Windows: C:/Users/YOUR_USERNAME/.kaggle/kaggle.json
+
+      - Mac/Linux: ~/.kaggle/kaggle.json
+      
+     - Run the following line to check if the installation is succesfull:
+     
+     kaggle --version
+     
+     The output should look something like - Kaggle API 1.x.x...
+     
+  - If the above does not work, it might be because you need to add the location of kaggle.exe to your PATH
+ To do that, follow these steps:
+ 
+  - In bash, terminal, or command line, type [where kaggle] to get its location
+  
+  - Press Windows + S and search: Environment Variables
+
+  - Open: "Edit the system environment variables"
+
+  - In the System Properties window, click the Environment Variables button
+
+  - Under "User variables", find the one named Path, select it, then click Edit
+
+  - Click New, and paste the path you copied
+
+  - Click OK to close all dialogs
+  
+  
+ - When kaggle is installed properly, all is left to do is to run the code in [src/download-data.R]
+ In /data/raw, this will create a zip file containing the data, and a car-data folder containing the extracted contents of the zip file
+    
