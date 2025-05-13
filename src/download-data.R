@@ -2,7 +2,7 @@ library(here)
 
 # Set paths
 zip_path <- here("data", "raw", "stanford-car-dataset-by-classes-folder.zip")
-extract_dir <- here("data", "raw", "car_data")
+extract_dir <- here("data", "raw", "car-data")
 
 
 # Download if the zip file doesn't exist
