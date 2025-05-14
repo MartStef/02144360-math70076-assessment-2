@@ -53,13 +53,13 @@ optimizer <- optim_adam(model$fc$parameters, lr = 0.001)
 
 criterion <- nn_cross_entropy_loss()
 
-train_losses <- c()
-val_losses <- c()
-train_accuracies <- c()
-val_accuracies <- c()
+train_losses_resnet <- c()
+val_losses_resnet <- c()
+train_accuracies_resnet <- c()
+val_accuracies_resnet <- c()
 
 # Training loop (simplified)
-for (epoch in 1:5) {
+for (epoch in 1:10) {
   model$train()
   total_loss <- 0
   correct <- 0
@@ -86,8 +86,8 @@ for (epoch in 1:5) {
     total <- total + length(batch[[2]])
   })
   
-  train_losses <- c(train_losses, total_loss)
-  train_accuracies <- c(train_accuracies, correct / total)
+  train_losses_resnet <- c(train_losses_resnet, total_loss)
+  train_accuracies_resnet <- c(train_accuracies_resnet, correct / total)
   
   cat(sprintf("Epoch %d - Loss: %.4f\n", epoch, total_loss))
 }
@@ -106,8 +106,8 @@ coro::loop(for (batch in val_dl) {
   val_total <- val_total + length(batch[[2]])
 })
 
-val_losses <- c(val_losses, val_loss)
-val_accuracies <- c(val_accuracies, val_correct / val_total)
+val_losses_resnet <- c(val_losses_resnet, val_loss)
+val_accuracies_resnet <- c(val_accuracies_resnet, val_correct / val_total)
 
 cat(sprintf("Validation accuracy: %.2f%%\n", val_correct / val_total * 100))
 
@@ -137,8 +137,8 @@ get_predictions <- function(model, dataloader) {
 results <- get_predictions(model, val_dl)
 
 # Compute metrics one by one with macro averaging
-accuracy(results, truth = truth, estimate = prediction)
-precision(results, truth = truth, estimate = prediction, estimator = "macro")
-recall(results, truth = truth, estimate = prediction, estimator = "macro")
-f_meas(results, truth = truth, estimate = prediction, estimator = "macro")
+resnet18_acc <- accuracy(results, truth = truth, estimate = prediction)
+resnet18_precision <- precision(results, truth = truth, estimate = prediction, estimator = "macro")
+resnet18_recall <- recall(results, truth = truth, estimate = prediction, estimator = "macro")
+resnet18_f1 <- f_meas(results, truth = truth, estimate = prediction, estimator = "macro")
 

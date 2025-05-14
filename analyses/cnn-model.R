@@ -72,7 +72,7 @@ train_accuracies <- c()
 val_accuracies <- c()
 
 # Training loop (simplified)
-for (epoch in 1:5) {
+for (epoch in 1:10) {
   model$train()
   total_loss <- 0
   correct <- 0
@@ -150,8 +150,8 @@ get_predictions <- function(model, dataloader) {
 results <- get_predictions(model, val_dl)
 
 # Compute metrics one by one with macro averaging
-accuracy(results, truth = truth, estimate = prediction)
-precision(results, truth = truth, estimate = prediction, estimator = "macro")
-recall(results, truth = truth, estimate = prediction, estimator = "macro")
-f_meas(results, truth = truth, estimate = prediction, estimator = "macro")
+cnn_acc <- accuracy(results, truth = truth, estimate = prediction)
+cnn_precision <- precision(results, truth = truth, estimate = prediction, estimator = "macro")
+cnn_recall <- recall(results, truth = truth, estimate = prediction, estimator = "macro")
+cnn_f1 <- f_meas(results, truth = truth, estimate = prediction, estimator = "macro")
 

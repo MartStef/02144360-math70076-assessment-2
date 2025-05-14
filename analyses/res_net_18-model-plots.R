@@ -9,21 +9,21 @@ library(torch)
 library(torchvision)
 library(ggplot2)
 library(yardstick)
-source(here("analyses", "cnn-model.R"))
+source(here("analyses", "res_net_18-model.R"))
 
 df <- data.frame(
-  epoch = 1:length(train_losses),
-  train_loss = train_losses,
-  val_loss = val_losses,
-  train_acc = train_accuracies,
-  val_acc = val_accuracies
+  epoch = 1:length(train_losses_resnet),
+  train_loss = train_losses_resnet,
+  val_loss = val_losses_resnet,
+  train_acc = train_accuracies_resnet,
+  val_acc = val_accuracies_resnet
 )
 
 # Plot loss
 p1 <- ggplot(df, aes(x = epoch)) +
   geom_line(aes(y = train_loss, color = "Train Loss")) +
   geom_line(aes(y = val_loss, color = "Val Loss")) +
-  labs(title = "Loss over Epochs for CNN", y = "Loss") +
+  labs(title = "Loss over Epochs for RESNET18", y = "Loss") +
   scale_color_manual(values = c("Train Loss" = "steelblue", "Val Loss" = "#3EBCD2")) +
   # set theme in a similar style to The Economist
   theme_minimal() +
@@ -39,14 +39,14 @@ p1 <- ggplot(df, aes(x = epoch)) +
 
 # Save the output in the correct directory
 # Setting resolution to 300dpi
-ggsave(filename = here("outputs", "loss-cnn-model.png"),
+ggsave(filename = here("outputs", "loss-res_net_18-model.png"),
        plot = p1, dpi = 300)
 
 # Plot accuracy
 p2 <- ggplot(df, aes(x = epoch)) +
   geom_line(aes(y = train_acc, color = "Train Accuracy")) +
   geom_line(aes(y = val_acc, color = "Val Accuracy")) +
-  labs(title = "Accuracy over Epochs for CNN", y = "Accuracy") +
+  labs(title = "Accuracy over Epochs for RESNET18", y = "Accuracy") +
   scale_color_manual(values = c("Train Accuracy" = "steelblue", "Val Accuracy" = "#3EBCD2")) +
   # set theme in a similar style to The Economist
   theme_minimal() +
@@ -62,7 +62,7 @@ p2 <- ggplot(df, aes(x = epoch)) +
 
 # Save the output in the correct directory
 # Setting resolution to 300dpi
-ggsave(filename = here("outputs", "accuracy-cnn-model.png"),
+ggsave(filename = here("outputs", "accuracy-res_net_18-model.png"),
        plot = p2, dpi = 300)
 
 
