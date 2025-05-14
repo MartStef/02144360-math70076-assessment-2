@@ -9,33 +9,16 @@ output:
 In this report, I will analyse the Stanford car data set and build two CNN models and
 evaluate their performance. The aim is to build a reliable CNN model that classifies car
 images correctly. This may be useful for training autonomous driving models where one 
-needs to distinguish between cars and other objects. Another use case might be in police chase situations, where advanced city camera systems can be able to distinguish the specific make, model and year of the car being chased. First, let's perform some Exploratory Data Analyses.
+needs to distinguish between cars and other objects. Another use case might be in police chase situations, where advanced city camera systems can be able to distinguish the specific make, model and year of the car being chased. First, let's perform some Exploratory Data Analyses.\
 
+First, we will select 50 random classes from the 196 classes of the original train data. Then, we do a 80-20 split of the data into a train and validation data sets. Let's examine how many car images we have for each of the 50 selected classes.\
 
-Advances in running equipment and preparation during the 2010s helped marathon runners improve training and race performance. Key innovations included carbon fiber plate shoes (introduced in 2017), enhanced GPS and heart rate monitoring, and better electrolyte drinks and carb-loading strategies. But how much did these improvements impact actual race performance?\
-
-The Comrades Marathon, the world’s largest and oldest ultramarathon, running approximately 89 kilometers (55 miles) between Durban and Pietermaritzburg in South Africa. Since 1921, it has had over 400,000 finishers within the 12-hour time limit (11 hours prior to 2003).\
-
-```{r, echo=FALSE, warning=FALSE, fig.cap="Average and minimal time run by the marathon participants for the years 2010 to 2019"}
-knitr::include_graphics(here::here("outputs", "average-and-fastest-plot.png"))
+```{r, echo=FALSE, warning=FALSE, fig.cap="Number of samples for each class"}
+knitr::include_graphics(here::here("outputs", "samples-per-class.png"))
 ```
 
-\
-Figure 1 shows that the times of the fastest runners has not changed dramatically between the beginning and the end of the decade. The only significant change is in 2016, when David Gatebe performed a record-braking run of 05:18:19, but his performance in later years dropped. Moreover, the average times of runners have become worse at the end of the decade. However, this might be due to the increased interest in marathon running.\
-
-```{r, echo=FALSE, warning=FALSE, fig.cap="Number of participants that ended the race in less than 9 hours and less than 12 hours and the percentage of people that finished in under 9 hours for the years 2010 to 2019"}
-knitr::include_graphics(here::here("outputs", "count-and-percentage-plot.png"))
-```
-
-\
-Figure 2 confirms this trend – the number of runners seems to increase throughout the years. The second plot shows the percentage of runners that finished in under 9 hours. This metric tries to mitigate the increase in the number of participants and shows whether runners have become faster. However, the ratio pretty much stays the same throughout the decade, indicating a not-so-significant change. Figure 3 shows the distribution of the times for the years 2010, 2013, 2016 and 2019 on the same scale. The peaks around the 12-hour mark get higher, which is the result of more participants, but not necessarily better runners.\
-
-```{r, echo=FALSE, warning=FALSE, fig.cap="Distribution plots of the running times for the years 2010, 2013, 2016 and 2019"}
-knitr::include_graphics(here::here("outputs", "distribution-plot.png"))
-```
-
-\
-In conclusion, while advances in running technology improve preparation and accessibility, they haven’t substantially impacted overall race performance. Further comparisons across decades and other marathons could provide deeper insights into long-term performance trends.
+We see that each class is represented relatively equally, i.e., we do not have a class that
+is overly presented nor under presented, which might create problems with the prediction abilities of our model. Now, let's plot 
 
 
 
