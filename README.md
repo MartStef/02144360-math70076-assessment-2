@@ -28,8 +28,37 @@ This directory contains all raw and derived data sets.
 Since the raw data set is quite large (2GB), the user can find instructions 
 on how to download it in [metadata.txt] (./data/raw/metadata.txt).
 
+The user can find the derived data in this folder, which contains train and validation sets
+on 50 of the 196 classes (chosen at random). These data sets are used to train and evaluate
+the models we build in order to aid fast training times and reproducability.
+
 ## src/
 
 This directory contains the source code of the project.
 
  - src/download-data.R contains the code needed to download the raw data locally
+ 
+ - src/data-manipulation.R contains the code needed to get the derived data
+ 
+## analyses/
+
+This directory contains the codes to implement the two CNN models and to create all plots 
+used in the Report.
+
+## outputs/
+
+This directory contains the png files of all plots used in the Report.
+
+## reports/
+
+This directory contains Rmd, PDF, and HTML files of the Report, which summarizes the
+findings of this small study.
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

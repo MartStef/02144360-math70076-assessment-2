@@ -13,9 +13,9 @@ source(here("analyses", "cnn-model.R"))
 source(here("analyses", "res_net_18-model.R"))
 
 metrics_df <- tibble::tibble(
-  metric = c("Accuracy", "Precision", "Recall", "F1-score"),
-  CNN = c(val_accuracies, cnn_precision$.estimate, cnn_recall$.estimate, cnn_f1$.estimate),
-  RESNET18 = c(val_accuracies_resnet, resnet18_precision$.estimate, resnet18_recall$.estimate, resnet18_f1$.estimate)
+  metric = c("Precision", "Recall", "F1-score"),
+  CNN = c(cnn_precision$.estimate, cnn_recall$.estimate, cnn_f1$.estimate),
+  RESNET18 = c(resnet18_precision$.estimate, resnet18_recall$.estimate, resnet18_f1$.estimate)
 ) %>%
   pivot_longer(cols = c(CNN, RESNET18), names_to = "Model", values_to = "Value")
 

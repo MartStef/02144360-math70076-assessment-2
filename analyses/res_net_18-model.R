@@ -87,7 +87,7 @@ for (epoch in 1:10) {
   })
   
   train_losses_resnet <- c(train_losses_resnet, total_loss)
-  train_accuracies_resnet <- c(train_accuracies_resnet, correct / total)
+  train_accuracies_resnet <- c(train_accuracies_resnet, correct / total * 100)
   
   cat(sprintf("Epoch %d - Loss: %.4f\n", epoch, total_loss))
 }
@@ -107,7 +107,7 @@ coro::loop(for (batch in val_dl) {
 })
 
 val_losses_resnet <- c(val_losses_resnet, val_loss)
-val_accuracies_resnet <- c(val_accuracies_resnet, val_correct / val_total)
+val_accuracies_resnet <- c(val_accuracies_resnet, val_correct / val_total * 100)
 
 cat(sprintf("Validation accuracy: %.2f%%\n", val_correct / val_total * 100))
 

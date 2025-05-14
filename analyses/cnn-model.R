@@ -42,7 +42,7 @@ net <- nn_module(
     self$conv1 <- nn_conv2d(3, 16, kernel_size = 3, padding = 1)
     self$pool <- nn_max_pool2d(kernel_size = 2)
     self$conv2 <- nn_conv2d(16, 32, kernel_size = 3, padding = 1)
-    self$fc1 <- nn_linear(32 * 56 * 56, 128)  # adjust depending on image size
+    self$fc1 <- nn_linear(32 * 56 * 56, 128)
     self$fc2 <- nn_linear(128, length(dataset$classes))
   },
   forward = function(x) {
@@ -100,7 +100,7 @@ for (epoch in 1:10) {
   })
   
   train_losses <- c(train_losses, total_loss)
-  train_accuracies <- c(train_accuracies, correct / total)
+  train_accuracies <- c(train_accuracies, correct / total * 100)
   
   cat(sprintf("Epoch %d - Loss: %.4f\n", epoch, total_loss))
 }
@@ -120,7 +120,7 @@ coro::loop(for (batch in val_dl) {
 })
 
 val_losses <- c(val_losses, val_loss)
-val_accuracies <- c(val_accuracies, val_correct / val_total)
+val_accuracies <- c(val_accuracies, val_correct / val_total * 100)
 
 cat(sprintf("Validation accuracy: %.2f%%\n", val_correct / val_total * 100))
 
